@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const HistoryContainer = styled.div`
   padding: 20px;
@@ -8,24 +8,35 @@ export const HistoryContainer = styled.div`
 export const CardList = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
   justify-content: center;
+  margin-top: 20px;
 `;
 
 export const WeatherCard = styled.div`
-  padding: 10px;
-  margin: 10px;
-  border: 1px solid #ccc;
-  text-align: left;
-  img {
-    width: 50px;
-    height: 50px;
+  background: rgba(198, 213, 242, 0.6);
+  color: black;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 200px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+
+  p {
+    margin: 5px 0;
   }
 `;
 
 export const DeleteButton = styled.button`
-  padding: 5px;
-  background-color: red;
+  background: red;
   color: white;
   border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
   cursor: pointer;
+  margin-top: 10px;
+
+  &:hover {
+    background: darkred;
+  }
 `;

@@ -39,6 +39,9 @@ const weatherSlice = createSlice({
     clearHistory: (state) => {
       state.history = [];
     },
+    removeFromHistory: (state, action) => {
+      state.history.splice(action.payload, 1); // Удаляет элемент по индексу
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -57,10 +60,10 @@ const weatherSlice = createSlice({
       .addCase(fetchWeather.rejected, (state, action) => {
         state.status = "failed"; 
         state.error = action.error.message ?? "Unknown error";
-
       });
   },
 });
+
 
 export const { clearHistory } = weatherSlice.actions;
 

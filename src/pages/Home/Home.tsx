@@ -4,7 +4,13 @@ import { useAppDispatch, useAppSelector } from "store/hooks";
 import { fetchWeather, weatherSelectors } from "store/createAppSlice";
 import Button from "components/Button/Button";
 import Spinner from "components/Spinner/Spinner";
-import { HomeContainer, InputField, ErrorMessage, WeatherContainer, WeatherInfo } from "./styles";
+import {
+  HomeContainer,
+  InputField,
+  ErrorMessage,
+  WeatherContainer,
+  WeatherInfo,
+} from "./styles";
 import { HeaderContainer, NavLinks } from "styles/GlobalStyles";
 
 const Home: React.FC = () => {
@@ -30,7 +36,19 @@ const Home: React.FC = () => {
         <h1>Weather App</h1>
         <NavLinks>
           <Link to="/">Home</Link>
-          <Link to="/history">History</Link>
+          {/* Ссылка History становится неактивной, если поле пустое */}
+          <Link
+            to="/history"
+            className={!city ? "disabled" : ""}
+            onClick={(e) => {
+              if (!city) {
+                e.preventDefault(); // Блокируем переход при пустом поле
+                alert("Please enter a city name before accessing history.");
+              }
+            }}
+          >
+            History
+          </Link>
         </NavLinks>
       </HeaderContainer>
 
@@ -48,7 +66,9 @@ const Home: React.FC = () => {
 
         {weather && (
           <WeatherContainer>
-            <h2>{weather.name}, {weather.sys.country}</h2>
+            <h2>
+              {weather.name}, {weather.sys.country}
+            </h2>
             <WeatherInfo>
               <img
                 src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
