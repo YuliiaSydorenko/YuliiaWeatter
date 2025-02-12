@@ -17,6 +17,7 @@ const globalStyles = css`
     background: url('/src/assets/sunrays.jpg') no-repeat center center fixed;
     background-size: cover;
     min-width: 320px;
+    width: 100%;
   }
 
   h1,
@@ -33,9 +34,10 @@ const globalStyles = css`
   #root {
     display: flex;
     flex-direction: column; 
+    width: 100%; 
     min-height: 100v;
     font-family: Lato, sans-serif;
-    padding: 0 10px; 
+   
   }
 `;
 
@@ -47,6 +49,11 @@ export const HeaderContainer = styled.header`
   background-color: rgba(21, 34, 58, 0.2);
   color: white;
   width: 100%;
+  position: relative; 
+  left: 0;
+  top: 0;
+  margin: 0; 
+  box-sizing: border-box; 
 
 
   @media (max-width: 768px) {

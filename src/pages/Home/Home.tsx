@@ -10,6 +10,7 @@ import {
   ErrorMessage,
   WeatherContainer,
   WeatherInfo,
+  InputButtonWrapper,
 } from "./styles";
 import { HeaderContainer, NavLinks } from "styles/GlobalStyles";
 
@@ -17,7 +18,6 @@ const Home: React.FC = () => {
   const [city, setCity] = useState("");
   const dispatch = useAppDispatch();
 
-  // 📌 Берём данные из Redux
   const weather = useAppSelector(weatherSelectors.selectWeather);
   const status = useAppSelector(weatherSelectors.selectStatus);
   const error = useAppSelector(weatherSelectors.selectError);
@@ -28,6 +28,7 @@ const Home: React.FC = () => {
       return;
     }
     dispatch(fetchWeather(city));
+    // setCity(""); // Очистка инпута только после поиска
   };
 
   return (
@@ -36,13 +37,12 @@ const Home: React.FC = () => {
         <h1>Weather App</h1>
         <NavLinks>
           <Link to="/">Home</Link>
-          {/* Ссылка History становится неактивной, если поле пустое */}
           <Link
             to="/history"
             className={!city ? "disabled" : ""}
             onClick={(e) => {
               if (!city) {
-                e.preventDefault(); // Блокируем переход при пустом поле
+                e.preventDefault();
                 alert("Please enter a city name before accessing history.");
               }
             }}
@@ -53,13 +53,19 @@ const Home: React.FC = () => {
       </HeaderContainer>
 
       <HomeContainer>
-        <InputField
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          placeholder="Enter city name"
-        />
-        <Button name="Search" onClick={handleSearch} disabled={status === "loading"} />
+        <InputButtonWrapper>
+          <InputField
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Enter city name"
+          />
+          <Button
+            name="Search"
+            onClick={handleSearch}
+            disabled={status === "loading"}
+          />
+        </InputButtonWrapper>
 
         {status === "loading" && <Spinner />}
         {error && <ErrorMessage>{error}</ErrorMessage>}

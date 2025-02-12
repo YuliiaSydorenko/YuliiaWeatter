@@ -40,7 +40,7 @@ const weatherSlice = createSlice({
       state.history = [];
     },
     removeFromHistory: (state, action) => {
-      state.history.splice(action.payload, 1); // Удаляет элемент по индексу
+      state.history.splice(action.payload, 1); 
     },
   },
   extraReducers: (builder) => {
