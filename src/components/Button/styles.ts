@@ -15,13 +15,23 @@ export const MainButton = styled.button<MainButtonStyledProps>`
   outline: none;
   border: none;
   padding: 20px;
-  background:${({ disabled, $isRed }) => disabled ? '#bebec7' : $isRed ? '#f02e0c' : '#180dad'};
+  background:${({ disabled, $isRed }) => disabled ? '#bebec7' : $isRed ? '#f56046' : '#180dad'};
   border-radius: 15px;
   color: white;
   font-family: Lato, Geneva, Tahoma, sans - serif;
   font-size: 16px;
   cursor: pointer;
-`
+
+  @media (max-width: 768px) {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+`;
 
 
 

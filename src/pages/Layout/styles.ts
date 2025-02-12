@@ -19,7 +19,7 @@ export const Header = styled.header`
 `;
 
 export const HeaderLogoContainer = styled.div`
-  width: 40px;
+  width: 50px;
   height: 40px;
   cursor: pointer;
 `;

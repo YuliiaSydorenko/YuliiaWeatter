@@ -1,16 +1,24 @@
 import styled from '@emotion/styled';
 
-// Контейнер для страницы Home
+
 export const HomeContainer = styled.div`
   padding: 20px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
-// Ссылки навигации
 export const NavLinks = styled.div`
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Вертикальное расположение */
+    gap: 10px;
+  }
 
   a {
     text-decoration: none;
@@ -24,14 +32,14 @@ export const NavLinks = styled.div`
 
     &.disabled {
       color: gray;
-      pointer-events: none; /* Отключает клики */
+      pointer-events: none; 
       text-decoration: none;
       cursor: not-allowed;
     }
   }
 `;
 
-// Контейнер с информацией о погоде
+
 export const WeatherContainer = styled.div`
   background: rgba(198, 213, 242, 0.3);
   color: black;
@@ -43,7 +51,7 @@ export const WeatherContainer = styled.div`
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 `;
 
-// Поле для ввода текста
+
 export const InputField = styled.input`
   width: 100%;
   max-width: 200px;
@@ -59,16 +67,17 @@ export const InputField = styled.input`
     border-color: #0077ff;
     outline: none;
   }
+
 `;
 
-// Сообщение об ошибке
+
 export const ErrorMessage = styled.p`
   color: red;
   font-size: 14px;
   margin-top: 10px;
 `;
 
-// Информация о погоде
+
 export const WeatherInfo = styled.div`
   margin-top: 20px;
 

@@ -16,6 +16,7 @@ const globalStyles = css`
     padding: 0;
     background: url('/src/assets/sunrays.jpg') no-repeat center center fixed;
     background-size: cover;
+    min-width: 320px;
   }
 
   h1,
@@ -34,6 +35,7 @@ const globalStyles = css`
     flex-direction: column; 
     min-height: 100v;
     font-family: Lato, sans-serif;
+    padding: 0 10px; 
   }
 `;
 
@@ -42,19 +44,43 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #282c34;
+  background-color: rgba(21, 34, 58, 0.2);
   color: white;
-  width: 100%
+  width: 100%;
+
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    h1 {
+      font-size: 18px;
+    }
+  }
 `;
 
+
 export const NavLinks = styled.nav`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
   a {
     color: #f7f4f4;
     text-decoration: none;
     margin: 0 15px;
     font-size: 18px;
+
     &:hover {
       text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+      margin: 0 8px;
     }
   }
 `;
