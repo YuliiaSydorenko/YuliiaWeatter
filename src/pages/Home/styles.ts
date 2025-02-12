@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 export const HomeContainer = styled.div`
   padding: 20px;
   text-align: center;
+  margin-top: 80px;
 
   @media (max-width: 768px) {
     padding: 10px;

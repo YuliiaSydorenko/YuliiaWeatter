@@ -3,48 +3,49 @@ import styled from '@emotion/styled';
 export const HistoryContainer = styled.div`
   padding: 20px;
   text-align: center;
-  position: relative; 
-`;
-
-export const NavLinks = styled.div`
+  position: relative;
+  height: 100vh;
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
-
-  a {
-    text-decoration: none;
-    color: #0077ff;
-    font-size: 18px;
-    padding: 10px;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+  flex-direction: column;
 `;
 
 export const CardList = styled.div`
+  flex: 1;
+  overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  padding-bottom: 20px; 
-  position: relative; 
-  z-index: 1; 
+  padding-bottom: 20px;
+`;
+
+export const WeatherCardWrapper = styled.div`
+  background: rgba(198, 213, 242, 0.3);
+  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; 
+  max-height: 400px;
+  padding-bottom: 20px;
+  position: relative;
+  padding-bottom: 60px; /* Добавляем место для кнопки */
 `;
 
 export const WeatherCard = styled.div`
-  background: rgba(198, 213, 242, 0.3);
   color: black;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  background: transparent;
+  box-shadow: none;
   text-align: center;
   max-width: 200px;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 768px) {
-    max-width: 150px; /* Уменьшаем карточки */
+    max-width: 150px;
     padding: 10px;
     font-size: 14px;
   }
@@ -53,7 +54,14 @@ export const WeatherCard = styled.div`
     max-width: 120px;
     font-size: 12px;
   }
+`;
 
+export const DeleteButtonContainer = styled.div`
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 export const DeleteButton = styled.button`
@@ -63,19 +71,25 @@ export const DeleteButton = styled.button`
   border-radius: 8px;
   padding: 5px 10px;
   cursor: pointer;
-  margin-top: 10px;
 
   &:hover {
     background: darkred;
   }
 `;
 
-export const DeleteAllButton = styled.button`
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
+  width: 100%;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: rosybrown;
+`;
+
+export const DeleteAllButton = styled.button`
+  background: blue;
   color: white;
   border: none;
   border-radius: 10px;
@@ -84,19 +98,16 @@ export const DeleteAllButton = styled.button`
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   z-index: 3;
 
-  
-
   &:hover {
-    background: darkred ; 
+    background: darkred;
   }
 
   &:focus {
-    outline: none; 
+    outline: none;
   }
 
-
   @media (max-width: 768px) {
-    padding: 8px 16px; /* Уменьшаем кнопку */
+    padding: 8px 16px;
     font-size: 14px;
   }
 
@@ -104,5 +115,4 @@ export const DeleteAllButton = styled.button`
     padding: 5px 10px;
     font-size: 12px;
   }
-
 `;
