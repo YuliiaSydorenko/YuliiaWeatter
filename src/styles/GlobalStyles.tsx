@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import bgImage from '../assets/sunrays.jpg';
 
 const globalStyles = css`
-  @import url(https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic);
+  @import url('https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic');
 
   * {
     box-sizing: border-box;
@@ -14,7 +14,7 @@ const globalStyles = css`
     height: 100%;
     margin: 0;
     padding: 0;
-    background: url('/src/assets/sunrays.jpg') no-repeat center center fixed;
+    background: url(${bgImage}) no-repeat center center fixed;
     background-size: cover;
     min-width: 320px;
     width: 100%;
@@ -35,9 +35,8 @@ const globalStyles = css`
     display: flex;
     flex-direction: column; 
     width: 100%; 
-    min-height: 100v;
+    min-height: 100vh; /* Исправлено "100v" на "100vh" */
     font-family: Lato, sans-serif;
-   
   }
 `;
 
@@ -49,12 +48,12 @@ export const HeaderContainer = styled.header`
   background-color: rgba(21, 34, 58, 0.2);
   color: white;
   width: 100%;
-  position: relative; 
+  position: fixed; 
   left: 0;
   top: 0;
   margin: 0; 
   box-sizing: border-box; 
-
+  z-index: 5;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -69,6 +68,9 @@ export const HeaderContainer = styled.header`
   }
 `;
 
+export const MainContent = styled.main`
+  margin-top: 80px; /* Добавляем отступ для основного контента, чтобы он не перекрывался хеддером */
+`;
 
 export const NavLinks = styled.nav`
   display: flex;
@@ -92,11 +94,8 @@ export const NavLinks = styled.nav`
   }
 `;
 
-
 function GlobalStyles() {
   return <Global styles={globalStyles} />;
 }
 
 export default GlobalStyles;
-
-  
