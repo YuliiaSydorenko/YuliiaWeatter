@@ -20,7 +20,7 @@ export interface WeatherData {
 
 export interface WeatherState {
   weather: WeatherData | null;
-  history: WeatherData[]; // Добавлено свойство history
+  history: WeatherData[]; 
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }

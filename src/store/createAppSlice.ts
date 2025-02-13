@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { WeatherState as SliceWeatherState, WeatherData } from "./slices/types"; // Обновленный импорт
-import { RootState } from "./store"; // Обновленный импорт
+import { RootState } from "./store"; 
 import axios from "axios";
 
-// Использование API ключа из переменных окружения
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY ?? "";
 console.log("API_KEY:", API_KEY);
 
-// Асинхронный thunk для получения погоды
+
 export const fetchWeather = createAsyncThunk(
   "weather/fetchWeather",
   async (city: string) => {

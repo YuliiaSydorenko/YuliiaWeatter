@@ -32,8 +32,8 @@ const Home: React.FC = () => {
       return;
     }
     dispatch(fetchWeather(city));
-    setCity(""); // Очистка инпута после поиска
-    setHasSearched(true); // Установить состояние, что поиск был выполнен
+    setCity(""); 
+    setHasSearched(true); 
   };
 
   return (
