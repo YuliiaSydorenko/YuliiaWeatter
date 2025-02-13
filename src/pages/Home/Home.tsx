@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import { fetchWeather, weatherSelectors } from "store/createAppSlice";
+import { fetchWeather, weatherSelectors } from "store/slices/weatherSlice";
 import Button from "components/Button/Button";
 import Spinner from "components/Spinner/Spinner";
 import {
@@ -11,11 +11,15 @@ import {
   WeatherContainer,
   WeatherInfo,
   InputButtonWrapper,
+  StyledH2,
+  StyledP,
+  WeatherIcon,
 } from "./styles";
 import { HeaderContainer, NavLinks } from "styles/GlobalStyles";
 
 const Home: React.FC = () => {
   const [city, setCity] = useState("");
+  const [hasSearched, setHasSearched] = useState(false);
   const dispatch = useAppDispatch();
 
   const weather = useAppSelector(weatherSelectors.selectWeather);
@@ -28,7 +32,8 @@ const Home: React.FC = () => {
       return;
     }
     dispatch(fetchWeather(city));
-    // setCity(""); // Очистка инпута только после поиска
+    setCity(""); // Очистка инпута после поиска
+    setHasSearched(true); // Установить состояние, что поиск был выполнен
   };
 
   return (
@@ -39,9 +44,9 @@ const Home: React.FC = () => {
           <Link to="/">Home</Link>
           <Link
             to="/history"
-            className={!city ? "disabled" : ""}
+            className={!hasSearched ? "disabled" : ""}
             onClick={(e) => {
-              if (!city) {
+              if (!hasSearched) {
                 e.preventDefault();
                 alert("Please enter a city name before accessing history.");
               }
@@ -72,18 +77,18 @@ const Home: React.FC = () => {
 
         {weather && (
           <WeatherContainer>
-            <h2>
+            <StyledH2>
               {weather.name}, {weather.sys.country}
-            </h2>
+            </StyledH2>
             <WeatherInfo>
-              <img
+              <WeatherIcon
                 src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
                 alt="Weather icon"
               />
-              <p>Temperature: {weather.main.temp}°C</p>
-              <p>Condition: {weather.weather[0].description}</p>
-              <p>Humidity: {weather.main.humidity}%</p>
-              <p>Wind speed: {weather.wind.speed} m/s</p>
+              <StyledP>Temperature: {weather.main.temp}°C</StyledP>
+              <StyledP>Condition: {weather.weather[0].description}</StyledP>
+              <StyledP>Humidity: {weather.main.humidity}%</StyledP>
+              <StyledP>Wind speed: {weather.wind.speed} m/s</StyledP>
             </WeatherInfo>
           </WeatherContainer>
         )}

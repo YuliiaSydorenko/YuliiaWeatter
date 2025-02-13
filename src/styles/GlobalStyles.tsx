@@ -35,7 +35,7 @@ const globalStyles = css`
     display: flex;
     flex-direction: column; 
     width: 100%; 
-    min-height: 100vh; /* Исправлено "100v" на "100vh" */
+    min-height: 100vh; 
     font-family: Lato, sans-serif;
   }
 `;
@@ -69,7 +69,7 @@ export const HeaderContainer = styled.header`
 `;
 
 export const MainContent = styled.main`
-  margin-top: 80px; /* Добавляем отступ для основного контента, чтобы он не перекрывался хеддером */
+  margin-top: 80px; 
 `;
 
 export const NavLinks = styled.nav`

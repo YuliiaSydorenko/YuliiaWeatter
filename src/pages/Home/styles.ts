@@ -38,17 +38,18 @@ export const NavLinks = styled.div`
     }
   }
 `;
+
 export const InputButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px; 
+
   @media (max-width: 480px) {
     flex-direction: column; 
     gap: 15px; 
   }
 `;
-
 
 export const WeatherContainer = styled.div`
   background: rgba(198, 213, 242, 0.3);
@@ -118,5 +119,36 @@ export const WeatherInfo = styled.div`
       width: 40px;
       height: 40px;
     }
+  }
+`;
+
+export const StyledH2 = styled.h2`
+  margin: 0;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
+`;
+
+export const StyledP = styled.p`
+  font-size: 16px;
+  margin: 5px 0;
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+`;
+
+export const WeatherIcon = styled.img`
+  width: 50px;
+  height: 50px;
+
+  @media (max-width: 480px) {
+    width: 40px;
+    height: 40px;
   }
 `;

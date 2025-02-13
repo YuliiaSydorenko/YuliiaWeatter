@@ -30,7 +30,6 @@ export const WeatherCardWrapper = styled.div`
   max-height: 400px;
   padding-bottom: 20px;
   position: relative;
-  padding-bottom: 60px; /* Добавляем место для кнопки */
 `;
 
 export const WeatherCard = styled.div`
@@ -114,5 +113,36 @@ export const DeleteAllButton = styled.button`
   @media (max-width: 480px) {
     padding: 5px 10px;
     font-size: 12px;
+  }
+`;
+
+export const StyledH2 = styled.h2`
+  margin: 0;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
+`;
+
+export const StyledP = styled.p`
+  font-size: 16px;
+  margin: 5px 0;
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+`;
+
+export const WeatherIcon = styled.img`
+  width: 50px;
+  height: 50px;
+
+  @media (max-width: 480px) {
+    width: 40px;
+    height: 40px;
   }
 `;
