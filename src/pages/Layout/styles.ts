@@ -47,7 +47,7 @@ export const Footer = styled.footer`
   width: 100%;
   height: fit-content;
   justify-content: space-between;
-  background-color: #2f5a6e;
+  background-color: #365e70;
   color: white;
 `;
 

@@ -20,7 +20,7 @@ export const CardList = styled.div`
 `;
 
 export const WeatherCardWrapper = styled.div`
-  background: rgba(198, 213, 242, 0.3);
+  background: rgba(165, 189, 238, 0.3);
   box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   display: flex;
