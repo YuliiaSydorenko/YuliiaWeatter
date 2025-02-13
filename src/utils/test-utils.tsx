@@ -1,10 +1,11 @@
-import type { RenderOptions } from "@testing-library/react"
-import { render } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
-import type { PropsWithChildren, ReactElement } from "react"
-import { Provider } from "react-redux"
-import type { AppStore, RootState } from "../store/store"
-import { makeStore } from "../store/store"
+import type { RenderOptions } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import type { PropsWithChildren, ReactElement } from "react";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import type { RootState } from "../store/store";
+import weatherReducer from "store/slices/weatherSlice"; // Обновленный импорт
 
 /**
  * This type extends the default options for
@@ -19,7 +20,7 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
    * controlled manner during testing, allowing components to be rendered
    * with predetermined state conditions.
    */
-  preloadedState?: Partial<RootState>
+  preloadedState?: Partial<RootState>;
 
   /**
    * Allows the use of a specific Redux store instance instead of a
@@ -30,7 +31,17 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
    *
    * @default makeStore(preloadedState)
    */
-  store?: AppStore
+  store?: ReturnType<typeof configureStore>;
+}
+
+/**
+ * Функция для создания тестового хранилища
+ */
+function makeStore(preloadedState = {}) {
+  return configureStore({
+    reducer: { weather: weatherReducer },
+    preloadedState,
+  });
 }
 
 /**
@@ -43,23 +54,26 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
  */
 export const renderWithProviders = (
   ui: ReactElement,
-  extendedRenderOptions: ExtendedRenderOptions = {},
+  extendedRenderOptions: ExtendedRenderOptions = {}
 ) => {
   const {
     preloadedState = {},
     // Automatically create a store instance if no store was passed in
     store = makeStore(preloadedState),
     ...renderOptions
-  } = extendedRenderOptions
+  } = extendedRenderOptions;
 
-  const Wrapper = ({ children }: PropsWithChildren) => (
+  const Wrapper = ({ children }: PropsWithChildren<{}>): JSX.Element => (
     <Provider store={store}>{children}</Provider>
-  )
+  );
 
   // Return an object with the store and all of RTL's query functions
   return {
     store,
     user: userEvent.setup(),
     ...render(ui, { wrapper: Wrapper, ...renderOptions }),
-  }
-}
+  };
+};
+
+// экспортируем функции
+export * from "@testing-library/react";

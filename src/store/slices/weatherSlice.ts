@@ -1,11 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { WeatherState as SliceWeatherState, WeatherData } from "./slices/types"; // Обновленный импорт
-import { RootState } from "./store"; 
+import { WeatherState as SliceWeatherState, WeatherData } from "./types"; // Обновленный импорт
+import { RootState } from "../store"; 
 import axios from "axios";
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY ?? "";
-console.log("API_KEY:", API_KEY);
-
 
 export const fetchWeather = createAsyncThunk(
   "weather/fetchWeather",
@@ -21,14 +19,14 @@ export const fetchWeather = createAsyncThunk(
   }
 );
 
-interface WeatherState {
+interface LocalWeatherState {
   weather: any;
   history: WeatherData[];
   status: "idle" | "loading" | "failed";
   error: string | null;
 }
 
-const initialState: WeatherState = {
+const initialState: LocalWeatherState = {
   weather: null,
   history: [],
   status: "idle",
@@ -67,10 +65,10 @@ const weatherSlice = createSlice({
 export const { clearHistory } = weatherSlice.actions;
 
 export const weatherSelectors = {
-  selectWeather: (state: { weather: WeatherState }) => state.weather.weather,
-  selectHistory: (state: { weather: WeatherState }) => state.weather.history,
-  selectStatus: (state: { weather: WeatherState }) => state.weather.status,
-  selectError: (state: { weather: WeatherState }) => state.weather.error,
+  selectWeather: (state: { weather: SliceWeatherState }) => state.weather.weather,
+  selectHistory: (state: { weather: SliceWeatherState }) => state.weather.history,
+  selectStatus: (state: { weather: SliceWeatherState }) => state.weather.status,
+  selectError: (state: { weather: SliceWeatherState }) => state.weather.error,
 };
 
 export default weatherSlice.reducer;
